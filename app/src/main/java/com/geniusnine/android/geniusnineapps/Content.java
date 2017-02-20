@@ -68,7 +68,7 @@ Intent intent = getIntent();
             // Create the Mobile Service Client instance, using the provided
 
             // Mobile Service URL and key
-            mClient = new MobileServiceClient("https://doctorfe.azurewebsites.net", this);
+            mClient = new MobileServiceClient("https://geniusnineapps.azurewebsites.net", this);
 
             // Extend timeout from default of 10s to 20s
             mClient.setAndroidHttpClientFactory(new OkHttpClientFactory() {
