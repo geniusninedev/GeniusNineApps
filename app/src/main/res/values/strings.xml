@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GeniusNine Apps</string>
+    <string name="facebook_app_id">267933240296176</string>
+    <string name="action_logout">Logout</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="fb_login_protocol_scheme">fb267933240296176</string>
+</resources>
