@@ -43,16 +43,27 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
+
+    Timer timer;
+    TimerTask timerTask;
+    final Handler handler = new Handler();
+
+
+
 
     private MobileServiceClient mClient;
    // private MobileServiceTable<AppCategory> mCategory;
    private MobileServiceSyncTable<AppCategory> mCategory;
     private CategoryAdapter mAdapter;
     private ListView listViewCategory;
+
 
 
     private FirebaseAuth mAuth;
@@ -132,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
 
             showAll();
 
+            startTimer();
+            //timer.schedule(showAll, 1000, 5000);
+
 
         }
         catch (MalformedURLException e) {
@@ -141,8 +155,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    public void startTimer() {
+        timer = new Timer();
+        initializeTimerTask();
+        timer.schedule(timerTask, 5000, 10000);
+    }
 
-    private AsyncTask<Void, Void, Void> initLocalStore() throws MobileServiceLocalStoreException, ExecutionException, InterruptedException {
+    public void initializeTimerTask() {
+        timerTask = new TimerTask() {
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+
+                        showAll();
+
+                    }
+                });
+            }
+        };
+    }
+        private AsyncTask<Void, Void, Void> initLocalStore() throws MobileServiceLocalStoreException, ExecutionException, InterruptedException {
 
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
             @Override
